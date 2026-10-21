@@ -1,0 +1,2 @@
+# Design-of-a-Smart-Parking-Management-System-Using-Image-Processing-and-IoT
+Đây là hệ thống quản lí bãi đổ xe thông minh tích hợp xử lý ảnh được thực hiện trên ESP32S3. Hệ thống sử dụng 3 node ESP32S3 trong đó 2 node được dùng để quản lí lối vào và lối ra. Node còn lại là node Master sẽ đảm nhận nhiệm vụ xử lý ROI và thực hiện các chức năng cảnh báo, hiển thị và kết hợp với 2 node còn lại để hoàn thiện hệ thống
