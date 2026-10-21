@@ -8,10 +8,7 @@ The system uses a **three-node architecture** consisting of an Entry Node, an Ex
 
 The web dashboard provides a centralized interface for monitoring parking-space occupancy, vehicle entry and exit, recognized license plates, recent events, and system alerts.
 
-<!-- Replace the placeholder below with your actual dashboard screenshot -->
-
-<img width="1885" height="911" alt="Ảnh chụp màn hình 2026-10-21 175411" src="https://github.com/user-attachments/assets/d6d05a44-04ea-45a9-b9b0-63020b20ca10" />
-
+<img width="1885" height="911" alt="Smart Parking Web Dashboard" src="https://github.com/user-attachments/assets/d6d05a44-04ea-45a9-b9b0-63020b20ca10" />
 
 *Figure 1. Web dashboard for smart parking monitoring.*
 
@@ -80,45 +77,13 @@ flowchart TB
 
 ## 🔌 Hardware Implementation
 
-The hardware is organized into three functional nodes, each responsible for a specific part of the parking management workflow.
+The hardware is organized into three functional nodes, each responsible for a specific part of the smart parking management workflow.
 
-### Entry Node
-
-Responsible for capturing vehicle images and controlling the entrance barrier.
-
-<!-- Replace with an actual photo of the Entry Node -->
-
-![Entry Node Hardware](docs/images/entry_node.jpg)
-
-*Figure 2. Entry Node based on ESP32-S3-CAM.*
-
-### Exit Node
-
-Responsible for capturing vehicle images and controlling the exit barrier.
-
-<!-- Replace with an actual photo of the Exit Node -->
-
-![Exit Node Hardware](docs/images/exit_node.jpg)
-
-*Figure 3. Exit Node based on ESP32-S3-CAM.*
-
-### Master Node
-
-Coordinates system functions, including parking-space monitoring, display, audio feedback, and flame detection.
-
-<!-- Replace with an actual photo of the Master Node -->
-
-![Master Node Hardware](docs/images/master_node.jpg)
-
-*Figure 4. Master Node and its connected peripherals.*
-
-### Complete Prototype
-
-<!-- Replace with an actual photo of the complete physical prototype -->
+The Entry Node and Exit Node handle vehicle image capture and barrier control, while the Master Node coordinates system functions, including display, audio feedback, and flame detection.
 
 ![Complete Smart Parking Prototype](docs/images/hardware_overview.jpg)
 
-*Figure 5. Overall hardware prototype of the smart parking system.*
+*Figure 2. Overall hardware prototype integrating the Entry Node, Exit Node, and Master Node.*
 
 ## 🔧 Hardware and Software Technologies
 
@@ -129,4 +94,108 @@ Coordinates system functions, including parking-space monitoring, display, audio
 | Image processing | Python, OpenCV, YOLO |
 | Parking-space classification | TensorFlow/Keras |
 | Communication | MQTT, Wi-Fi, JSON |
-| Web development | HTML, CSS
+| Web development | HTML, CSS, JavaScript |
+| Messaging infrastructure | MQTT broker (EMQX) |
+
+## 🔄 System Workflow
+
+1. **Vehicle Detection:** Sensors at the entrance or exit detect a vehicle.
+2. **Image Capture:** The corresponding ESP32-S3-CAM captures a vehicle image.
+3. **Image Transmission:** The image is transmitted to the computer-based processing application through MQTT.
+4. **License Plate Recognition:** The Python application processes the image using a YOLO-based recognition pipeline.
+5. **Data Storage:** The processed image and recognition results are saved for monitoring and reference.
+6. **Event Publishing:** Vehicle entry or exit information is published through MQTT.
+7. **Dashboard Update:** The web dashboard displays vehicle information, image references, and recent events.
+8. **System Feedback:** The embedded nodes provide barrier control, LCD/audio feedback, and safety alerts.
+
+## 🧪 Image Processing
+
+The system uses computer-based image processing to recognize vehicle license plates from images captured at the entrance and exit.
+
+The parking-space monitoring approach divides an overview image into predefined Regions of Interest (ROIs), with each ROI corresponding to an individual parking space. These regions can be analyzed to determine occupancy and support parking-condition assessment.
+
+### License Plate Recognition
+
+<!-- Replace this placeholder with a screenshot of the license plate recognition result -->
+
+![License Plate Recognition Result](docs/images/license_plate_result.jpg)
+
+*Figure 3. Example of the license plate recognition result.*
+
+### Parking-Space Monitoring
+
+<!-- Replace this placeholder with a screenshot showing the parking-space ROIs and classification results -->
+
+![Parking-Space ROI Analysis](docs/images/parking_roi_result.jpg)
+
+*Figure 4. Parking-space regions of interest used for occupancy monitoring.*
+
+## 📊 Testing and Evaluation
+
+The system is evaluated through functional tests covering embedded hardware, image processing, MQTT communication, and web monitoring.
+
+| Test Item | Evaluation |
+|---|---|
+| Vehicle image capture | Verify image capture at the entrance and exit |
+| License plate recognition | Evaluate recognition results using test images |
+| MQTT communication | Verify image and event transmission |
+| Barrier control | Test barrier operation during vehicle entry and exit |
+| Dashboard monitoring | Verify vehicle information and event updates |
+| Parking-space monitoring | Evaluate occupancy classification for each parking space |
+| Safety alerts | Test flame detection and visual/audio notifications |
+
+## 📈 Quantitative Results
+
+Quantitative performance metrics should be added after testing the system with a sufficiently representative dataset.
+
+| Metric | Result |
+|---|---|
+| License plate recognition accuracy | To be measured |
+| Parking-space classification accuracy | To be measured |
+| MQTT message delivery reliability | To be measured |
+| Average image-processing time | To be measured |
+
+*Note: Performance values should be reported based on actual experimental results.*
+
+## 🎯 Project Objectives
+
+- Design and integrate an ESP32-S3-based smart parking management system.
+- Implement MQTT communication between embedded nodes and computer-based software.
+- Develop a YOLO-based license plate recognition pipeline using Python.
+- Build a web dashboard for parking and vehicle-event monitoring.
+- Integrate barrier control and safety-alert functions.
+- Develop an ROI-based approach for parking-space occupancy analysis.
+
+## 💡 Technical Skills Demonstrated
+
+- Embedded systems development using ESP32-S3
+- C/C++ firmware development
+- Python-based computer vision
+- YOLO-based object and license plate recognition
+- OpenCV image processing
+- MQTT and IoT communication
+- Web development using HTML, CSS, and JavaScript
+- Hardware–software integration and system debugging
+- Sensor and actuator interfacing
+- System testing and evaluation
+
+## 📁 Repository Structure
+
+```text
+Smart-Parking-Management-System/
+├── firmware/
+│   ├── entry_node/
+│   ├── exit_node/
+│   └── master_node/
+├── image_processing/
+├── web_dashboard/
+├── docs/
+│   └── images/
+│       ├── hardware_overview.jpg
+│       ├── license_plate_result.jpg
+│       └── parking_roi_result.jpg
+└── README.md
+```
+
+*Note: Adjust the directory structure to match the actual files in the repository.*
+
