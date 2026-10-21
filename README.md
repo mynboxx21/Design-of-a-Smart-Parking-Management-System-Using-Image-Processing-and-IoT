@@ -10,7 +10,8 @@ The web dashboard provides a centralized interface for monitoring parking-space 
 
 <!-- Replace the placeholder below with your actual dashboard screenshot -->
 
-![Uploading Ảnh chụp màn hình 2026-10-21 175411.png…]()
+<img width="1885" height="911" alt="Ảnh chụp màn hình 2026-10-21 175411" src="https://github.com/user-attachments/assets/d6d05a44-04ea-45a9-b9b0-63020b20ca10" />
+
 
 *Figure 1. Web dashboard for smart parking monitoring.*
 
